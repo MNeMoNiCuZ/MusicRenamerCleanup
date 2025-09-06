@@ -1,0 +1,31 @@
+DEBUG: mousePressEvent - Album header clicked. Rows to select: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+DEBUG: mousePressEvent - Selected row: 1
+DEBUG: mousePressEvent - Selected row: 2
+DEBUG: mousePressEvent - Selected row: 3
+DEBUG: mousePressEvent - Selected row: 4
+DEBUG: mousePressEvent - Selected row: 5
+DEBUG: mousePressEvent - Selected row: 6
+DEBUG: mousePressEvent - Selected row: 7
+DEBUG: mousePressEvent - Selected row: 8
+DEBUG: mousePressEvent - Selected row: 9
+DEBUG: mousePressEvent - Selected row: 10
+DEBUG: mousePressEvent - Selected row: 11
+DEBUG: mousePressEvent - Selected row: 12
+DEBUG: mousePressEvent - Clicked row: 13
+DEBUG: mousePressEvent - Album header clicked. Rows to select: [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+DEBUG: mousePressEvent - Selected row: 14
+DEBUG: mousePressEvent - Selected row: 15
+DEBUG: mousePressEvent - Selected row: 16
+DEBUG: mousePressEvent - Selected row: 17
+DEBUG: mousePressEvent - Selected row: 18
+DEBUG: mousePressEvent - Selected row: 19
+DEBUG: mousePressEvent - Selected row: 20
+DEBUG: mousePressEvent - Selected row: 21
+DEBUG: mousePressEvent - Selected row: 22
+DEBUG: mousePressEvent - Selected row: 23
+DEBUG: mousePressEvent - Selected row: 24
+DEBUG: mousePressEvent - Selected row: 25
+DEBUG: mousePressEvent - Selected row: 26
+DEBUG: mousePressEvent - Selected row: 27
+DEBUG: mousePressEvent - Selected row: 28
+DEBUG: mousePressEvent - Selected row: 29

@@ -1,0 +1,89 @@
+{
+    "general": {
+        "scans": [],
+        "special_album_names": [
+            "MISC",
+            "FAVORITES"
+        ],
+        "words_to_remove": [
+            "Bonus Track",
+            "Remastered",
+            "Remaster",
+            "Official Music Video",
+            "Music Video",
+            "Lyrics Video"
+        ],
+        "excluded_folders": [],
+        "supported_audio_formats": [
+            ".mp3",
+            ".flac",
+            ".wav",
+            ".ogg",
+            ".m4a",
+            ".wma",
+            ".aac",
+            ".aiff",
+            ".alac"
+        ],
+        "quick_folder_path": "C:\\Music\\Cleaning"
+    },
+    "ui": {
+        "highlight_colors": {
+            "feature": {
+                "color": "#FFDDC1",
+                "keywords": [
+                    "feat",
+                    "ft."
+                ]
+            },
+            "remix": {
+                "color": "#D1FFC1",
+                "keywords": [
+                    "remix",
+                    "r3m1x"
+                ]
+            },
+            "instrumental": {
+                "color": "#C1D1FF",
+                "keywords": [
+                    "instrumental"
+                ]
+            },
+            "catch_all": {
+                "color": "#F0F0F0",
+                "keywords": [
+                    "(",
+                    ")",
+                    "[",
+                    "]"
+                ]
+            }
+        },
+        "manual_edit_highlight": {
+            "background": "#FFFF99",
+            "text_style": "bold_italic"
+        },
+        "missing_title_highlight": {
+            "color": "#FFCCCC"
+        }
+    },
+    "tagging_and_columns": {
+        "default_tags": {
+            "Artist": true,
+            "Album": true,
+            "Title": true,
+            "Date": false,
+            "Genre": false,
+            "Composer": false,
+            "Performer": false,
+            "Album Artist": false,
+            "Track Number": false,
+            "Total Tracks": false,
+            "Disc Number": false,
+            "Total Discs": false,
+            "Comment": false,
+            "Lyrics": false
+        },
+        "custom_tags": []
+    }
+}
