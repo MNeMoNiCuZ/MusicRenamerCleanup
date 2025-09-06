@@ -2,6 +2,14 @@
 
 MusicRenamerCleanup is a niche utility for cleaning and renaming music files based on a specific folder structure. It's designed to streamline the process of organizing a music library by enforcing a consistent naming and tagging convention.
 
+<img width="2534" height="445" alt="image" src="https://github.com/user-attachments/assets/d1f68208-cf73-44e1-98c7-84862d57be11" />
+
+<img width="1927" height="1212" alt="image" src="https://github.com/user-attachments/assets/ea6bffa8-a00d-4b66-ac73-f709afcb6002" />
+
+<img width="471" height="759" alt="image" src="https://github.com/user-attachments/assets/2b7ab76b-e7c7-4eca-b3ea-53a3d5922d50" />
+
+
+
 **Disclaimer:** This tool is currently under construction and is tailored to a very specific workflow. Some features may not work perfectly, and it may not be useful unless you follow the same organizational structure.
 
 ## Features
