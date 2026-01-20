@@ -25,7 +25,20 @@
             ".aiff",
             ".alac"
         ],
-        "quick_folder_path": "C:\\Music\\Cleaning"
+        "last_open_folder": "",
+        "auto_apply_name_to_title": true,
+        "tag_mappings": {
+            "(acoustic|akustik)": "[Acoustic]",
+            "acapella": "[Acapella]",
+            "instrumental": "[Instrumental]",
+            "piano": "[Piano]",
+            "live": "[Live]",
+            "vocal cover": "[Vocal Cover]",
+            "demo": "[Demo]",
+            "alternative version": "[Alternative Remix]",
+            "radio version": "[Radio Remix]",
+            "radio edit": "[Radio Remix]"
+        }
     },
     "ui": {
         "highlight_colors": {

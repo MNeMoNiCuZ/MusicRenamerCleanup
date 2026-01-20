@@ -117,10 +117,11 @@ class MainWindow(QMainWindow):
         toolbar.addAction(settings_action)
 
         # Debug Action
-        debug_load_action = QAction("Load Quick Folder", self)
-        debug_load_action.triggered.connect(self.handle_debug_load_folder)
-        debug_load_action.setToolTip("Load the folder specified in Settings (General) > Quick Folder Path")
-        toolbar.addAction(debug_load_action)
+        # Reopen Last Folder Action
+        reopen_last_action = QAction("Reopen Last Folder", self)
+        reopen_last_action.triggered.connect(self.handle_reopen_last_folder)
+        reopen_last_action.setToolTip("Reopen the last loaded folder")
+        toolbar.addAction(reopen_last_action)
 
     def update_selected_files_count(self, count):
         """Updates the label in the tools panel with the number of selected files."""
@@ -157,6 +158,9 @@ class MainWindow(QMainWindow):
         path = QFileDialog.getExistingDirectory(self, "Select Root Music Folder")
         if path:
             self.root_path = path
+            # Save this as the last open folder
+            self.settings_manager.settings.setdefault('general', {})['last_open_folder'] = path
+            self.settings_manager.save_settings()
             self.rescan_library()
 
     def rescan_library(self):
@@ -191,6 +195,24 @@ class MainWindow(QMainWindow):
                 for album in self.library[artist_name].albums:
                     if album.name == album_name:
                         self.current_tracks_in_view.extend(copy.deepcopy(album.tracks))
+        
+        # --- Auto-apply Name > Title Logic ---
+        # Check setting
+        auto_apply = self.settings_manager.get('general', {}).get('auto_apply_name_to_title', False)
+        if auto_apply and self.current_tracks_in_view:
+            # Count tracks with missing/empty titles (checking the original tags or if clean_title is also empty initially)
+            # We check the 'title' from tags.
+            missing_title_count = sum(1 for t in self.current_tracks_in_view if not t.tags.get('title', '').strip())
+            total_tracks = len(self.current_tracks_in_view)
+            
+            if total_tracks > 0:
+                percentage_missing = (missing_title_count / total_tracks) * 100
+                # If > 80% are missing titles, run name_to_title
+                if percentage_missing > 80:
+                    for track in self.current_tracks_in_view:
+                        name_to_title(track, self.settings_manager)
+
+        # Auto-generate filename preview
         # Auto-generate filename preview
         for track in self.current_tracks_in_view:
             generate_filename_from_tags(track, self.settings_manager)
@@ -462,15 +484,15 @@ class MainWindow(QMainWindow):
         dialog = WarningsWindow(self, warnings_text)
         dialog.exec()
 
-    def handle_debug_load_folder(self):
-        """Loads the folder specified in Quick Folder Path setting."""
-        quick_path = self.settings_manager.get('general', {}).get('quick_folder_path', '')
-        if quick_path and os.path.exists(quick_path) and os.path.isdir(quick_path):
-            self.root_path = quick_path
+    def handle_reopen_last_folder(self):
+        """Loads the folder that was last opened."""
+        last_path = self.settings_manager.get('general', {}).get('last_open_folder', '')
+        if last_path and os.path.exists(last_path) and os.path.isdir(last_path):
+            self.root_path = last_path
             self.rescan_library()
             
         else:
-            QMessageBox.warning(self, "Quick Load Error", f"Quick folder not found or not set: {quick_path}")
+            QMessageBox.warning(self, "Load Error", f"Last folder not found or not set: {last_path}")
 
     def handle_save_changes(self):
         """Saves all proposed tag and filename changes to disk for the selected artist's folder."""
@@ -643,7 +665,7 @@ class MainWindow(QMainWindow):
                     raw_title = original_tags.get('title', '')
                     
                     # Clean the title using folder-derived artist/album for accuracy
-                    clean_title, suffixes = extract_suffixes(raw_title, folder_artist)
+                    clean_title, suffixes = extract_suffixes(raw_title, folder_artist, self.settings_manager)
 
                     # Create the track object. 'tags' MUST be the original file tags.
                     track_obj = Track(path=file_path, filename=filename, tags=original_tags, suffixes=suffixes, clean_title=clean_title)

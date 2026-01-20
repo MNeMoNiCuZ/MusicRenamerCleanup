@@ -31,7 +31,7 @@ def name_to_title(track: Track, settings_manager):
         track.tags['title'] = normalized_title
         track.proposed_tags['title'] = normalized_title
 
-    clean_title, extracted_suffixes = extract_suffixes(cleaned_name, artist)
+    clean_title, extracted_suffixes = extract_suffixes(cleaned_name, artist, settings_manager)
 
     # Step 3: Apply title case formatting (simple implementation)
     title_cased = re.sub(r'\b\w', lambda m: m.group(0).upper(), clean_title.lower())

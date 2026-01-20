@@ -24,7 +24,7 @@ def find_replace_in_title(tracks, find_text, replace_text, settings_manager):
             # 3. Re-extract suffixes from the modified string
             artist = track.proposed_tags.get('artist', track.tags.get('artist', ''))
             album = track.proposed_tags.get('album', track.tags.get('album', ''))
-            new_clean_title, new_suffixes = extract_suffixes(new_displayed_title, artist)
+            new_clean_title, new_suffixes = extract_suffixes(new_displayed_title, artist, settings_manager)
 
             # 4. Update the track object
             track.proposed_tags['title'] = new_clean_title
