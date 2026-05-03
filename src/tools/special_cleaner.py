@@ -12,6 +12,7 @@ SUFFIX_CONTENT_REGEX = re.compile(r'[\(\[](?P<content>[^)\]]+)[\)\]]')
 
 # Regexes to find specific keywords within the captured content and treat them as suffixes
 FT_REGEX = re.compile(r'(feat|ft|featuring)\.?(.*)', re.I)
+INLINE_FT_REGEX = re.compile(r'^(?P<title>.*?)(?:\s+[-,]?\s*)(?:feat|ft|featuring)\.?\s+(?P<artists>.+)$', re.I)
 REMIX_REGEX = re.compile(r'(.*)(remix|r3m1x|rmx)', re.I)
 
 # Normalize apostrophes to standard format
@@ -120,6 +121,15 @@ def extract_suffixes(title: str, artist: str = "", settings_manager=None) -> Tup
         # Create a regex to replace the artist name (case-insensitive)
         # We use re.escape to handle any special characters in the artist name
         clean_title = re.sub(re.escape(artist), '', clean_title, flags=re.IGNORECASE)
+
+    # Also detect inline feature credits at the end of the title (outside brackets),
+    # e.g. "SUCK IT UP ft. Dana Dentata"
+    inline_ft_match = INLINE_FT_REGEX.match(clean_title.strip())
+    if inline_ft_match:
+        featured_artists = _format_artist_names(inline_ft_match.group('artists').strip())
+        if featured_artists:
+            suffixes.append(f"[Ft. {featured_artists}]")
+            clean_title = inline_ft_match.group('title').strip()
 
     # Clean up empty brackets/parentheses that might remain
     clean_title = re.sub(r'\(\s*\)|\[\s*\]', '', clean_title)

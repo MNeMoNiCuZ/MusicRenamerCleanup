@@ -4,6 +4,9 @@ import os
 # Add src directory to Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
+# Suppress Qt DPI warning
+os.environ["QT_LOGGING_RULES"] = "qt.qpa.window=false"
+
 from PyQt6.QtWidgets import QApplication
 from main_window import MainWindow
 

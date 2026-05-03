@@ -33,8 +33,32 @@ def name_to_title(track: Track, settings_manager):
 
     clean_title, extracted_suffixes = extract_suffixes(cleaned_name, artist, settings_manager)
 
-    # Step 3: Apply title case formatting (simple implementation)
-    title_cased = re.sub(r'\b\w', lambda m: m.group(0).upper(), clean_title.lower())
+    # Remove wrapping single quotes when the full title is enclosed (e.g. 'LEGEND' -> LEGEND)
+    quote_wrapped_match = re.match(r"^\s*'([^']+)'\s*$", clean_title)
+    if quote_wrapped_match:
+        clean_title = quote_wrapped_match.group(1).strip()
+
+    # Preserve dotted acronyms/initialisms (e.g. I.F.O.Y.G.) through casing.
+    acronym_pattern = re.compile(r'\b(?:[A-Za-z]\.){2,}(?:[A-Za-z]\.?)?\b')
+    acronym_map = {}
+
+    def _acronym_replacer(match):
+        key = f"__acr{len(acronym_map)}__"
+        acronym_map[key] = match.group(0)
+        return key
+
+    title_for_case = acronym_pattern.sub(_acronym_replacer, clean_title)
+
+    # Step 3: Apply title case formatting without capitalizing after apostrophes (can't -> Can't)
+    title_cased = re.sub(
+        r'(^|[\s\-\(\[\{])([a-z])',
+        lambda m: f"{m.group(1)}{m.group(2).upper()}",
+        title_for_case.lower()
+    )
+
+    # Restore preserved acronyms exactly as they appeared in the source.
+    for key, acronym in acronym_map.items():
+        title_cased = title_cased.replace(key, acronym)
 
     # Step 4: Update track fields (only title and suffixes)
     track.clean_title = title_cased

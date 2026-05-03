@@ -6,12 +6,48 @@
             "FAVORITES"
         ],
         "words_to_remove": [
+            "( Short)",
+            "(Official Track Premiere)",
+            "(Short)",
+            "- Music Video",
+            "4K",
+            "Art Track",
+            "Audio",
             "Bonus Track",
-            "Remastered",
-            "Remaster",
-            "Official Music Video",
+            "Concept Trailer",
+            "Dynamic Art Video",
+            "Extended",
+            "Free Download",
+            "Full EP Stream",
+            "HD",
+            "HQ",
+            "Lyric Video",
+            "LyricVideo",
+            "Lyrics Video",
             "Music Video",
-            "Lyrics Video"
+            "Offical",
+            "Official",
+            "Official Audio",
+            "Official Guitar Playthrough",
+            "Official Lyric Video",
+            "Official Lyricvideo",
+            "Official Music",
+            "Official Music Video",
+            "Official Video",
+            "Official Video Short",
+            "Official Visual",
+            "Officiell Video",
+            "Performance Video",
+            "Radio Edit",
+            "Remaster",
+            "Remastered",
+            "Teaser",
+            "US Version",
+            "Ver.",
+            "Version",
+            "Video",
+            "Visualiser",
+            "Visualizer"
         ],
         "excluded_folders": [],
         "supported_audio_formats": [
@@ -25,7 +61,7 @@
             ".aiff",
             ".alac"
         ],
-        "last_open_folder": "",
+        "last_open_folder": "H:/K/Music - Other/!Sorting New",
         "auto_apply_name_to_title": true,
         "tag_mappings": {
             "(acoustic|akustik)": "[Acoustic]",
@@ -37,7 +73,8 @@
             "demo": "[Demo]",
             "alternative version": "[Alternative Remix]",
             "radio version": "[Radio Remix]",
-            "radio edit": "[Radio Remix]"
+            "radio edit": "[Radio Remix]",
+            "unplugged": "[Unplugged]"
         }
     },
     "ui": {
@@ -98,5 +135,6 @@
             "Lyrics": false
         },
         "custom_tags": []
-    }
+    },
+    "config_version": 1
 }
